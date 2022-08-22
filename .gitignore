@@ -1,0 +1,31 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+env.properties
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out
+test-output
+atlassian-ide-plugin.xml
+
+# Eclipse artifacts, including WTP generated manifests
+bin
+spring-*/src/main/java/META-INF/MANIFEST.MF
+
+# Maven artifacts
+pom.xml
