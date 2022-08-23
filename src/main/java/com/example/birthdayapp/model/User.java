@@ -2,11 +2,11 @@ package com.example.birthdayapp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
+@Entity
 public class User {
 
     public User() {
@@ -19,7 +19,8 @@ public class User {
     private String email;
     @JsonIgnore
     private String password;
-    private List<Birthday> birthdays;
+    @OneToMany(mappedBy="user")
+    private Set<Birthday> birthdays;
 
     public long getId() {
         return id;
@@ -49,7 +50,7 @@ public class User {
         this.password = password;
     }
 
-    public List<Birthday> getBirthdays() {
+    public Set<Birthday> getBirthdays() {
         return birthdays;
     }
 }
