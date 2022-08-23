@@ -1,10 +1,8 @@
 package com.example.birthdayapp.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity
 public class Birthday {
 
     public Birthday() {
@@ -16,6 +14,9 @@ public class Birthday {
     private LocalDate date;
     private String firstname;
     private String lastname;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public long getId() {
         return id;

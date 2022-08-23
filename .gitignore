@@ -28,4 +28,4 @@ bin
 spring-*/src/main/java/META-INF/MANIFEST.MF
 
 # Maven artifacts
-pom.xml
+#pom.xml
