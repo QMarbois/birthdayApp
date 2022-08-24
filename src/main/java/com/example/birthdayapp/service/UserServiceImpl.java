@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public Optional<User> login(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password);
+    public Optional<User> login(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class User {
     private long id;
     private String username;
     private String email;
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
     @OneToMany(mappedBy="user")
     private Set<Birthday> birthdays;
