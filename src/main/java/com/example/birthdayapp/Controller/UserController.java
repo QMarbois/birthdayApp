@@ -1,10 +1,15 @@
 package com.example.birthdayapp.Controller;
 
+import com.example.birthdayapp.model.Birthday;
 import com.example.birthdayapp.model.User;
+import com.example.birthdayapp.service.BirthdayServiceImpl;
 import com.example.birthdayapp.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,13 +20,18 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping(value = {"/"})
-    public List<User> getUsers() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
     }
 
     @GetMapping("/{userId}")
-    public Optional<User> getUserById(@PathVariable("userId") Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable("userId") Long id) {
+        try {
+            User user = userService.getUserById(id);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PostMapping("/register")
@@ -31,10 +41,12 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public Optional<User> login(
+    public User login(
             @RequestParam("email") String email,
             @RequestParam("password") String password) {
         return userService.login(email, password);
     }
+
+
 
 }

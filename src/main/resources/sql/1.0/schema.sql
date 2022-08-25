@@ -1,0 +1,19 @@
+CREATE TABLE Birthday (
+id BIGINT UNSIGNED PRIMARY KEY NOT NULL,
+date Date,
+firstname VARCHAR(255),
+lastname VARCHAR(255)
+);
+
+ALTER TABLE birthday ADD COLUMN id_user BIGINT UNSIGNED NOT NULL;
+
+CREATE TABLE User  (
+id BIGINT UNSIGNED PRIMARY KEY NOT NULL,
+username VARCHAR(255),
+password VARCHAR(255),
+email VARCHAR(255)
+);
+
+ALTER TABLE birthday ADD CONSTRAINT FOREIGN KEY (id_user) REFERENCES user(id);
+CREATE INDEX idx_user ON birthday (id_user);
+

@@ -26,12 +26,12 @@ public class BirthdayServiceImpl implements BirthdayService{
 
     @Override
     public Set<Birthday> getBirthdaysByUserId(Long userId) {
-        Optional<User> user = userService.getUserById(userId);
+        User user = userService.getUserById(userId);
         //TODO check with master Bardu
-        if (user.isEmpty()){
+        if (user == null){
             throw new NoSuchElementException();
         }
-        return user.get().getBirthdays();
+        return user.getBirthdays();
     }
 
     @Override

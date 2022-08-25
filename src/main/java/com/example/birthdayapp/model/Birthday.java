@@ -18,6 +18,15 @@ public class Birthday {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    public Birthday(Long id, LocalDate date, String firstname, String lastname, User user) {
+        super();
+        this.id = id;
+        this.date = date;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }
