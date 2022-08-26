@@ -9,9 +9,6 @@ import java.util.Set;
 @Entity
 public class User {
 
-    public User() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,6 +18,18 @@ public class User {
     private String password;
     @OneToMany(mappedBy="user")
     private Set<Birthday> birthdays;
+
+    public User() {
+        super();
+    }
+
+    public User(Long id, String username, String email, String password) {
+        super();
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public long getId() {
         return id;
@@ -53,4 +62,6 @@ public class User {
     public Set<Birthday> getBirthdays() {
         return birthdays;
     }
+
+
 }

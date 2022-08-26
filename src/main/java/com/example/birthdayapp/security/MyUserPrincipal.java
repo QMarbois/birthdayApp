@@ -2,7 +2,7 @@ package com.example.birthdayapp.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import com.example.birthdayapp.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -10,14 +10,21 @@ import java.util.Collection;
 
 public class MyUserPrincipal implements UserDetails {
 
-    private User membre;
+    private User user;
 
-    public User getMembre() {
-        return membre;
+    public MyUserPrincipal(User user) {
+        super();
+        this.user = user;
     }
 
-    public void setMembre(User membre) {
-        this.membre = membre;
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -30,31 +37,37 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        // TODO Auto-generated method stub
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        // TODO Auto-generated method stub
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        // TODO Auto-generated method stub
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        // TODO Auto-generated method stub
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        // TODO Auto-generated method stub
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        // TODO Auto-generated method stub
+        return true;
     }
 }

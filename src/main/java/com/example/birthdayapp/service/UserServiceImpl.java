@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
@@ -40,12 +40,17 @@ public class UserServiceImpl implements UserDetailsService {
 
 
     @Override
-    public MyUserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
-        MyUserPrincipal user = new MyUserPrincipal();
-        if(user.getUsername() == null){
-            throw new UsernameNotFoundException("Username not found");
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+
+        System.out.println("-----------> " + optionalUser);
+
+        if (!optionalUser.isPresent()) {
+            throw new UsernameNotFoundException(username);
         }
-        return user;
+        return new MyUserPrincipal(optionalUser.get());
+
     }
 
 
